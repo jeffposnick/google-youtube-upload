@@ -25,27 +25,15 @@
         element!
       </p>
 
+      <p>
+        Camera recording requires <strong>Chrome 47</strong> or later with
+        <code>chrome://flags/#enable-experimental-web-platform-features</code> enabled!
+      </p>
+
       <iron-pages attr-for-selected="id"
                   selected="[[state]]">
         <section id="pre-upload">
-          <div>
-            <label for="video-title">Title:</label>
-            <input id="video-title" type="text" value="{{videoTitle::change}}">
-          </div>
-          <div>
-            <label for="description">Description:</label>
-            <textarea id="description" value="{{description::change}}"></textarea>
-          </div>
-          <div>
-            <label for="privacy-status">Privacy Status:</label>
-            <select id="privacy-status" value="{{privacyStatus::change}}">
-              <option>public</option>
-              <option>unlisted</option>
-              <option>private</option>
-            </select>
-          </div>
-
-          <google-youtube-upload client-id="1054047045356-j8pgqgls9vdef3rl09hapoicumbte0bo.apps.googleusercontent.com"
+          <google-youtube-upload client-id="1081407441937-kb9ismfsf1nnk831pasehm47sg1qo936.apps.googleusercontent.com"
                                  video-title="[[videoTitle]]"
                                  description="[[description]]"
                                  privacy-status="[[privacyStatus]]"
