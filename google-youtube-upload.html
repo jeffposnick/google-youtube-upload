@@ -371,7 +371,7 @@ Automatic upload on video file select, with a custom title, and 'unlisted' priva
       navigator.mediaDevices.getUserMedia({audio: true, video: true}).then(function(stream) {
         this.$$('#get-user-media').src = URL.createObjectURL(stream);
         this._recordedBlobs = [];
-        this._mediaRecorder = new MediaRecorder(stream);
+        this._mediaRecorder = new MediaRecorder(stream, {mimeType: 'video/webm;codecs=vp9,vp8'});
 
         this._mediaRecorder.addEventListener('dataavailable', function(event) {
           if (event.data.size > 0) {
