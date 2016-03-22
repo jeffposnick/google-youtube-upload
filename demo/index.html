@@ -13,6 +13,12 @@
         width: 400px;
         height: 300px;
         border: 2px solid silver;
+        max-width: 100%;
+      }
+
+      google-youtube {
+        width: 400px;
+        height: 300px;
       }
     </style>
   </head>
@@ -23,11 +29,6 @@
         Upload videos with a
         <code><a href="index.html" target="_blank">&lt;google-youtube-upload&gt;</a></code>
         element!
-      </p>
-
-      <p>
-        Camera recording requires <strong>Chrome 47</strong> or later with
-        <code>chrome://flags/#enable-experimental-web-platform-features</code> enabled!
       </p>
 
       <iron-pages attr-for-selected="id"
@@ -66,7 +67,9 @@
             <a href$="[[computeVideoUrl(videoId)]]" target="_blank">[[computeVideoUrl(videoId)]]</a>
             and embedded below:
           </p>
-          <google-youtube video-id="[[videoId]]"></google-youtube>
+          <template is="dom-if" if="[[processingComplete]]">
+            <google-youtube video-id="[[videoId]]" rel="0"></google-youtube>
+          </template>
         </section>
 
         <section id="error">
@@ -115,6 +118,7 @@
 
       app.handleYouTubeProcessingComplete = function() {
         app.state = 'processing-complete';
+        app.processingComplete = true;
       };
 
       app.handleYouTubeProcessingFail = function(e) {
