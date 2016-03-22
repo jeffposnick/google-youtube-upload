@@ -429,7 +429,9 @@ Automatic upload on video file select, with a custom title, and 'unlisted' priva
       recordSupported: {
         readOnly: true,
         type: Boolean,
-        value: Boolean('MediaRecorder' in window && 'mediaDevices' in navigator)
+        value: Boolean('MediaRecorder' in window &&
+                       'mediaDevices' in navigator &&
+                       'getUserMedia' in navigator.mediaDevices)
       }
     },
 
