@@ -545,18 +545,26 @@ Automatic upload on video file select, with a custom title, and 'unlisted' priva
           this._videoBlob = new Blob(this._recordedBlobs, {
             type: this._mediaRecorder.mimeType
           });
-          this._mediaRecorder.stream.getAudioTracks().forEach(function(track) {
-            track.stop();
-          });
-          this._mediaRecorder.stream.getVideoTracks().forEach(function(track) {
-            track.stop();
-          });
-          this._mediaRecorder = null;
-          this._recordedBlobs = null;
-
           this.$$('#get-user-media').src = URL.createObjectURL(this._videoBlob);
+
+          this._tearDownMediaRecorder();
         }.bind(this));
       }.bind(this));
+    },
+
+    _tearDownMediaRecorder: function() {
+      this._recordingState = 'stopped';
+
+      if (this._mediaRecorder) {
+        this._mediaRecorder.stream.getAudioTracks().forEach(function(track) {
+          track.stop();
+        });
+        this._mediaRecorder.stream.getVideoTracks().forEach(function(track) {
+          track.stop();
+        });
+        this._mediaRecorder = null;
+        this._recordedBlobs = null;
+      }
     },
 
     _loadChannels: function() {
@@ -625,6 +633,8 @@ Automatic upload on video file select, with a custom title, and 'unlisted' priva
     },
 
     _transitionToLoginLogout: function() {
+      // This will be a no-op if we don't currently have a MediaRecorder.
+      this._tearDownMediaRecorder();
       this._selectedSection = 'login-logout';
     },
 
@@ -655,7 +665,6 @@ Automatic upload on video file select, with a custom title, and 'unlisted' priva
     },
 
     _handleStopClicked: function() {
-      this._recordingState = 'stopped';
       this._mediaRecorder.stop();
     },
 
