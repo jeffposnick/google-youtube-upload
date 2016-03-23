@@ -155,6 +155,7 @@ Automatic upload on video file select, with a custom title, and 'unlisted' priva
       <section name="record-video">
         <video id="get-user-media"
                autoplay
+               muted$="[[!_calculateVideoControls(_recordingState)]]"
                controls$="[[_calculateVideoControls(_recordingState)]]">
         </video>
         <div class="fabs">
