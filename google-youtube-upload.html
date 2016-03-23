@@ -49,10 +49,6 @@ Automatic upload on video file select, with a custom title, and 'unlisted' priva
       margin: 16px;
     }
 
-    google-signin {
-      margin-top: 64px;
-    }
-
     section {
       @apply(--layout-center);
       @apply(--layout-center-justified);
@@ -117,15 +113,6 @@ Automatic upload on video file select, with a custom title, and 'unlisted' priva
                        on-google-signed-out="_handleSignedOut">
         </google-signin>
 
-        <p>
-          By clicking 'upload,' you certify that you own all rights to the
-          content or that you are authorized by the owner to make the content
-          publicly available on YouTube, and that it otherwise complies with
-          the YouTube Terms of Service located at
-          <a target="_blank" href="http://www.youtube.com/t/terms">http://www.youtube.com/t/terms</a>.
-        </p>
-
-
         <template is="dom-if" if="[[_channel]]">
           <div class="fabs">
             <paper-fab icon="google-youtube-upload-icons:theaters"
@@ -144,12 +131,16 @@ Automatic upload on video file select, with a custom title, and 'unlisted' priva
       </section>
 
       <section name="upload-file">
-        <p id="tos">
-          Select a video file to upload.
-        </p>
         <input type="file"
                accept="video/*"
                on-change="_handleFileChanged">
+        <p id="tos">
+          By clicking 'upload,' you certify that you own all rights to the
+          content or that you are authorized by the owner to make the content
+          publicly available on YouTube, and that it otherwise complies with
+          the YouTube Terms of Service located at
+          <a target="_blank" href="http://www.youtube.com/t/terms">http://www.youtube.com/t/terms</a>.
+        </p>
         <div class="fabs">
           <paper-fab icon="google-youtube-upload-icons:file-upload"
                      mini
